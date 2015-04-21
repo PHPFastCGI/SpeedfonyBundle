@@ -7,6 +7,7 @@ use PHPFastCGI\FastCGIDaemon\StreamSocketDaemon;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
@@ -27,15 +28,22 @@ class DaemonRunCommand extends Command
         $this
             ->setName('speedfony:daemon:run')
             ->setDescription('Execute the FCGI daemon')
-            ->addArgument('socket', InputArgument::OPTIONAL, 'The socket stream to listen on')
-            ->addArgument('port',   InputArgument::OPTIONAL, 'Port to listen on')
-            ->addArgument('cycles', InputArgument::OPTIONAL, 'Request cycles to live for, 0 means infinite', 0);
+            ->addArgument('cycles', InputArgument::OPTIONAL, 'Request cycles to live for, 0 means infinite (default is 20)', 20)
+            ->addOption('socket', null, InputOption::VALUE_REQUIRED, 'The socket stream to listen on')
+            ->addOption('port', null, InputOption::VALUE_REQUIRED, 'Port to listen on');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $getIntegerArgument = function ($argument, $minimumValue) use ($input) {
-            $value    = (string) $input->getArgument($argument);
+        $getIntegerInput = function ($type, $name, $minimumValue) use ($input) {
+            if ('argument' === $type) {
+                $value = (string) $input->getArgument($name);
+            } elseif ('option' === $type) {
+                $value = (string) $input->getOption($name);
+            } else {
+                throw new \LogicException('Unknown input type: ' . $type);
+            }
+
             $intValue = (int)    $value;
 
             if ((string) $intValue !== $value) {
@@ -47,15 +55,15 @@ class DaemonRunCommand extends Command
             return $value;
         };
 
-        if ($input->hasArgument('socket')) {
-            $daemon = new StreamSocketDaemon($input->getArgument('socket'));
-        } elseif ($input->hasArgument('port')) {
-            $daemon = new SocketDaemon($getIntegerArgument('port', 0));
+        if (null !== $input->getOption('socket')) {
+            $daemon = new StreamSocketDaemon($input->getOption('socket'));
+        } elseif (null !== $input->getOption('port')) {
+            $daemon = new SocketDaemon($getIntegerInput('option', 'port', 0));
         } else {
             throw new \Exception('You must specify either the socket or port argument');
         }
 
-        $maximumCycles = $getIntegerArgument('cycles', 0);
+        $maximumCycles = $getIntegerInput('argument', 'cycles', 0);
 
         for($cycles = 0; ($maximumCycles == 0) || $cycles < $maximumCycles; $cycles++) {
             $request = $daemon->getRequest();
