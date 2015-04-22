@@ -1,5 +1,5 @@
 services:
-    andrew_carter_uk_speedfony.daemon_run_command:
+    php_fast_cgi_speedfony.daemon_run_command:
         class: PHPFastCGI\SpeedfonyBundle\Command\DaemonRunCommand
         arguments: [@kernel]
         tags:

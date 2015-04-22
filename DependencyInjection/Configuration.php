@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('andrew_carter_uk_speedfony');
+        $rootNode = $treeBuilder->root('php_fast_cgi_speedfony');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
