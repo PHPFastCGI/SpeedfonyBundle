@@ -29,7 +29,6 @@ class DaemonRunCommand extends Command
             ->setName('speedfony:daemon:run')
             ->setDescription('Execute the FCGI daemon')
             ->addArgument('cycles', InputArgument::OPTIONAL, 'Request cycles to live for, 0 means infinite (default is 20)', 20)
-            ->addOption('socket', null, InputOption::VALUE_REQUIRED, 'The socket stream to listen on')
             ->addOption('port', null, InputOption::VALUE_REQUIRED, 'Port to listen on');
     }
 
@@ -44,7 +43,7 @@ class DaemonRunCommand extends Command
                 throw new \LogicException('Unknown input type: ' . $type);
             }
 
-            $intValue = (int)    $value;
+            $intValue = (int) $value;
 
             if ((string) $intValue !== $value) {
                 throw new \Exception('The ' . $argument . ' argument must be an integer');
@@ -55,12 +54,10 @@ class DaemonRunCommand extends Command
             return $value;
         };
 
-        if (null !== $input->getOption('socket')) {
-            $daemon = new StreamSocketDaemon($input->getOption('socket'));
-        } elseif (null !== $input->getOption('port')) {
+        if (null !== $input->getOption('port')) {
             $daemon = new SocketDaemon($getIntegerInput('option', 'port', 0));
         } else {
-            throw new \Exception('You must specify either the socket or port argument');
+            $daemon = new StreamSocketDaemon();
         }
 
         $maximumCycles = $getIntegerInput('argument', 'cycles', 0);
