@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.0",
         "symfony/symfony": "~2.7",
         "symfony/psr-http-message-bridge": "~0.1",
         "phpfastcgi/fastcgi-daemon": "~0.2"
