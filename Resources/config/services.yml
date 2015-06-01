@@ -1,6 +1,12 @@
 services:
+    php_fast_cgi_speedfony.symfony_message_factory:
+        class: Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory
+
+    php_fast_cgi_speedfony.psr_message_factory:
+        class: Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory
+
     php_fast_cgi_speedfony.daemon_run_command:
         class: PHPFastCGI\SpeedfonyBundle\Command\DaemonRunCommand
-        arguments: [@kernel]
+        arguments: ['@kernel', '@php_fast_cgi_speedfony.symfony_message_factory', '@php_fast_cgi_speedfony.psr_message_factory']
         tags:
             - { name: console.command }

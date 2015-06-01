@@ -12,12 +12,9 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "symfony/dependency-injection": "~2.0",
-        "symfony/framework-bundle": "~2.0",
-        "symfony/http-kernel": "~2.0",
-        "symfony/console": "~2.0",
-        "symfony/config": "~2.0",
-        "phpfastcgi/fastcgi-daemon": "0.1.0"
+        "symfony/symfony": "~2.7",
+        "symfony/psr-http-message-bridge": "~0.1",
+        "phpfastcgi/fastcgi-daemon": "~0.2"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
