@@ -7,6 +7,8 @@ use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Zend\Diactoros\ServerRequestFactory;
 
 class KernelWrapperTest extends \PHPUnit_Framework_TestCase
@@ -39,6 +41,54 @@ class KernelWrapperTest extends \PHPUnit_Framework_TestCase
         });
 
         $kernelWrapper = new KernelWrapper($kernel, new HttpFoundationFactory(), new DiactorosFactory());
+
+        $psrResponse = $kernelWrapper->handleRequest($psrRequest);
+
+        $this->assertEquals($symfonyResponse->getContent(),    (string) $psrResponse->getBody());
+        $this->assertEquals($symfonyResponse->getStatusCode(), $psrResponse->getStatusCode());
+    }
+}
+
+class MockKernel extends Kernel
+{
+    /**
+     * @var callable
+     */
+    protected $callback;
+
+    /**
+     * Constructor.
+     * 
+     * @param callable $callback
+     */
+    public function __construct($callback)
+    {
+        $this->callback = $callback;
+
+        parent::__construct('dev', false);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function registerBundles()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function handle(Request $request, $type = 1, $catch = true)
+    {
+        return call_user_func($this->callback, $request);
 
         $psrResponse = $kernelWrapper->handleRequest($psrRequest);
 
