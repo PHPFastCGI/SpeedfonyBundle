@@ -3,8 +3,9 @@
 namespace PHPFastCGI\SpeedfonyBundle\Bridge;
 
 use PHPFastCGI\FastCGIDaemon\KernelInterface;
-use PHPFastCGI\FastCGIDaemon\Http\RequestEnvironmentInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Bridge\PsrHttpMessage\HttpFoundationFactoryInterface;
+use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 class KernelWrapper implements KernelInterface
@@ -15,47 +16,36 @@ class KernelWrapper implements KernelInterface
     protected $kernel;
 
     /**
+     * @var HttpFoundationFactoryInterface
+     */
+    protected $symfonyMessageFactory;
+
+    /**
+     * @var HttpMessageFactoryInterface
+     */
+    protected $psrMessageFactory;
+
+    /**
      * Constructor.
      * 
      * @param Kernel $kernel
      */
-    public function __construct(Kernel $kernel)
+    public function __construct(Kernel $kernel, HttpFoundationFactoryInterface $symfonyMessageFactory, HttpMessageFactoryInterface $psrMessageFactory)
     {
-        $this->kernel = $kernel;
+        $this->kernel                = $kernel;
+        $this->symfonyMessageFactory = $symfonyMessageFactory;
+        $this->psrMessageFactory     = $psrMessageFactory;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function handleRequest(RequestEnvironmentInterface $requestEnvironment)
+    public function handleRequest(ServerRequestInterface $request)
     {
-        $server  = $requestEnvironment->getServer();
-        $query   = $requestEnvironment->getQuery();
-        $post    = $requestEnvironment->getPost();
-        $files   = $requestEnvironment->getFiles();
-        $cookies = $requestEnvironment->getCookies();
-        $content = null;
+        $symfonyRequest = $this->symfonyMessageFactory->createRequest($request);;
 
-        $body = $requestEnvironment->getBody();
+        $symfonyResponse = $this->kernel->handle($symfonyRequest);
 
-        if (null !== $body) {
-            $content = stream_get_contents($body);
-        }
-
-        $request = new Request($query, $post, [], $cookies, $files, $server, $content);
-
-        $response = $this->kernel->handle($request);
-
-        $statusCode = $response->getStatusCode();
-
-        if (isset($response::$statusTexts[$statusCode])) {
-            $reasonPhrase = $response::$statusTexts[$statusCode];
-        } else {
-            $reasonPhrase = '';
-        }
-
-        $headers = explode("\r\n", trim((string) $response->headers));
-
-        return new Response($statusCode, $reasonPhrase, $headers, $response->getContent());
+        return $this->psrMessageFactory->createResponse($symfonyResponse);
     }
 }
