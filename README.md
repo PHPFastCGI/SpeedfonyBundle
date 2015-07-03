@@ -19,7 +19,7 @@ To start the daemon listening on port 5000 use the command below. Production mod
 Check the FastCGI documentation for your chosen web server to find out how to configure it to use this daemon as a FastCGI application.
 
 ```sh
-php app/console speedfony:daemon:run --target="tcp://localhost:5000" --env="prod"
+php app/console daemon:run --port 5000 --env="prod"
 ```
 
 If you are using apache, you can configure the FastCGI module to launch and manage the daemon itself. For this to work you must omit the "--target" option from the command and the daemon will instead listen for incoming connections on FCGI_LISTENSOCK_FILENO (STDIN).
@@ -30,6 +30,9 @@ This daemon is currently in early development stages and not considered stable. 
 stable release is expected by September 2015.
 
 ## Updates
+
+### v0.3.0
+- Upgraded to use FastCGIDaemon v0.3.0
 
 ### v0.2.0
 - Upgraded to use FastCGIDaemon v0.2.0 and Symfony 2.7 with PSR-7 messages
