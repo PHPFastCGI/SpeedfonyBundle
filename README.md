@@ -29,4 +29,9 @@ If you are using apache, you can configure the FastCGI module to launch and mana
 This daemon is currently in early development stages and not considered stable. A
 stable release is expected by September 2015.
 
+## Updates
+
+### v0.2.0
+- Upgraded to use FastCGIDaemon v0.2.0 and Symfony 2.7 with PSR-7 messages
+
 Contributions and suggestions are welcome.
