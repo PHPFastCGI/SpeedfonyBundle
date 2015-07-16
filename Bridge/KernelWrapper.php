@@ -45,7 +45,6 @@ class KernelWrapper implements KernelInterface
         $symfonyRequest = $this->symfonyMessageFactory->createRequest($request);;
 
         $symfonyResponse = $this->kernel->handle($symfonyRequest);
-
         $this->kernel->terminate($symfonyRequest, $symfonyResponse);
 
         return $this->psrMessageFactory->createResponse($symfonyResponse);
