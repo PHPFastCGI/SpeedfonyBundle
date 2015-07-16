@@ -22,7 +22,7 @@ Check the FastCGI documentation for your chosen web server to find out how to co
 php app/console daemon:run --port 5000 --env="prod"
 ```
 
-If you are using apache, you can configure the FastCGI module to launch and manage the daemon itself. For this to work you must omit the "--target" option from the command and the daemon will instead listen for incoming connections on FCGI_LISTENSOCK_FILENO (STDIN).
+If you are using apache, you can configure the FastCGI module to launch and manage the daemon itself. For this to work you must omit the "--port" option from the command and the daemon will instead listen for incoming connections on FCGI_LISTENSOCK_FILENO (STDIN).
 
 ## Current Status
 
