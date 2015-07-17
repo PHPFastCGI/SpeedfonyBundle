@@ -31,6 +31,9 @@ stable release is expected by September 2015.
 
 ## Updates
 
+### v0.3.1
+- Bugfix: Added call to terminate method on symfony kernel (so post response listeners now work)
+
 ### v0.3.0
 - Upgraded to use FastCGIDaemon v0.3.0
 
