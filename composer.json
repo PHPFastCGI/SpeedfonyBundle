@@ -14,7 +14,7 @@
         "php": ">=5.5.0",
         "symfony/symfony": "~2.7",
         "symfony/psr-http-message-bridge": "~0.1",
-        "phpfastcgi/fastcgi-daemon": "~0.3"
+        "phpfastcgi/fastcgi-daemon": "0.3.*"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
