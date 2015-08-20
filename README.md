@@ -10,6 +10,36 @@ A symfony2 bundle which allows applications to reduce overheads by exposing symf
 
 Using this bundle, symfony2 applications can stay alive between HTTP requests whilst operating behind the protection of a FastCGI enabled web server.
 
+## Installing
+
+By turning your Symfony application into a FastCGI application, you can keep the application in memory between request cycles.
+
+To do this, open the terminal in your project directory and use composer to add the Speedfony Bundle to your dependencies.
+
+```sh
+composer require "phpfastcgi/speedfony-bundle:~0.4"
+```
+
+Next, register the bundle in your AppKernel.php file:
+
+```php
+// app/AppKernel.php
+
+// ...
+class AppKernel extends Kernel
+{
+  public function registerBundles()
+  {
+    $bundles = array(
+      // ...
+      new PHPFastCGI\SpeedfonyBundle\PHPFastCGISpeedfonyBundle(),
+    );
+
+    // ...
+  }
+// ...
+```
+
 ## Running the Daemon
 
 To start the daemon listening on port 5000 use the command below. Production mode is selected here for the purposes of generating accurate benchmarks. We do not recommend that you use this package in production mode as it is not yet stable.
