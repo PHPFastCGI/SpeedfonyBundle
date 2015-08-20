@@ -17,7 +17,7 @@ By turning your Symfony application into a FastCGI application, you can keep the
 To do this, open the terminal in your project directory and use composer to add the Speedfony Bundle to your dependencies.
 
 ```sh
-composer require "phpfastcgi/speedfony-bundle:~0.4"
+composer require "phpfastcgi/speedfony-bundle:~0.5"
 ```
 
 Next, register the bundle in your AppKernel.php file:
@@ -59,6 +59,9 @@ stable release is expected by September 2015.
 
 ## Updates
 
+### v0.5.0
+- Upgraded to use FastCGIDaemon v0.5.0
+- 
 ### v0.4.0
 - Upgraded to use FastCGIDaemon v0.4.0, renamed command to 'speedfony:run'
 
