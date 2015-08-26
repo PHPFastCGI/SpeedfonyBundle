@@ -2,10 +2,8 @@
 
 namespace PHPFastCGI\SpeedfonyBundle\Bridge;
 
+use PHPFastCGI\FastCGIDaemon\Http\RequestInterface;
 use PHPFastCGI\FastCGIDaemon\KernelInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Symfony\Bridge\PsrHttpMessage\HttpFoundationFactoryInterface;
-use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 class KernelWrapper implements KernelInterface
@@ -13,40 +11,28 @@ class KernelWrapper implements KernelInterface
     /**
      * @var Kernel 
      */
-    protected $kernel;
-
-    /**
-     * @var HttpFoundationFactoryInterface
-     */
-    protected $symfonyMessageFactory;
-
-    /**
-     * @var HttpMessageFactoryInterface
-     */
-    protected $psrMessageFactory;
+    private $kernel;
 
     /**
      * Constructor.
      * 
      * @param Kernel $kernel
      */
-    public function __construct(Kernel $kernel, HttpFoundationFactoryInterface $symfonyMessageFactory, HttpMessageFactoryInterface $psrMessageFactory)
+    public function __construct(Kernel $kernel)
     {
-        $this->kernel                = $kernel;
-        $this->symfonyMessageFactory = $symfonyMessageFactory;
-        $this->psrMessageFactory     = $psrMessageFactory;
+        $this->kernel = $kernel;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function handleRequest(ServerRequestInterface $request)
+    public function handleRequest(RequestInterface $request)
     {
-        $symfonyRequest = $this->symfonyMessageFactory->createRequest($request);;
+        $symfonyRequest = $request->getHttpFoundationRequest();
 
         $symfonyResponse = $this->kernel->handle($symfonyRequest);
         $this->kernel->terminate($symfonyRequest, $symfonyResponse);
 
-        return $this->psrMessageFactory->createResponse($symfonyResponse);
+        return $symfonyResponse;
     }
 }

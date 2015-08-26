@@ -13,8 +13,7 @@
     "require": {
         "php": ">=5.5.0",
         "symfony/symfony": "~2.7",
-        "symfony/psr-http-message-bridge": "~0.1",
-        "phpfastcgi/fastcgi-daemon": "0.5.*"
+        "phpfastcgi/fastcgi-daemon": "0.6.*"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
