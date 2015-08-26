@@ -59,9 +59,12 @@ stable release is expected by September 2015.
 
 ## Updates
 
+### v0.6.0
+- Upgraded to use FastCGIDaemon v0.6.0
+
 ### v0.5.0
 - Upgraded to use FastCGIDaemon v0.5.0
-- 
+
 ### v0.4.0
 - Upgraded to use FastCGIDaemon v0.4.0, renamed command to 'speedfony:run'
 
