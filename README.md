@@ -6,6 +6,8 @@
 
 A symfony2 bundle which allows applications to reduce overheads by exposing symfony's Request-Response structure to a FastCGI daemon.
 
+Visit the [project website](http://phpfastcgi.github.io/).
+
 ## Introduction
 
 Using this bundle, symfony2 applications can stay alive between HTTP requests whilst operating behind the protection of a FastCGI enabled web server.
