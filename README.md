@@ -12,6 +12,12 @@ Visit the [project website](http://phpfastcgi.github.io/).
 
 Using this bundle, symfony2 applications can stay alive between HTTP requests whilst operating behind the protection of a FastCGI enabled web server.
 
+## Current Status
+
+This daemon is currently in early development stages and not considered stable. A stable release is expected by September 2015.
+
+Contributions and suggestions are welcome.
+
 ## Installing
 
 By turning your Symfony application into a FastCGI application, you can keep the application in memory between request cycles.
@@ -53,11 +59,6 @@ php app/console speedfony:run --port 5000 --env="prod"
 ```
 
 If you are using apache, you can configure the FastCGI module to launch and manage the daemon itself. For this to work you must omit the "--port" option from the command and the daemon will instead listen for incoming connections on FCGI_LISTENSOCK_FILENO (STDIN).
-
-## Current Status
-
-This daemon is currently in early development stages and not considered stable. A
-stable release is expected by September 2015.
 
 ## Updates
 
