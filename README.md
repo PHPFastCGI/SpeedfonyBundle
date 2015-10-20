@@ -25,7 +25,7 @@ By turning your Symfony application into a FastCGI application, you can keep the
 To do this, open the terminal in your project directory and use composer to add the Speedfony Bundle to your dependencies.
 
 ```sh
-composer require "phpfastcgi/speedfony-bundle:0.6.*"
+composer require "phpfastcgi/speedfony-bundle:^0.7"
 ```
 
 Next, register the bundle in your AppKernel.php file:
@@ -61,6 +61,9 @@ php app/console speedfony:run --port 5000 --env="prod"
 If you are using apache, you can configure the FastCGI module to launch and manage the daemon itself. For this to work you must omit the "--port" option from the command and the daemon will instead listen for incoming connections on FCGI_LISTENSOCK_FILENO (STDIN).
 
 ## Updates
+
+### v0.7.0
+- Upgraded to use FastCGIDaemon v0.7.0
 
 ### v0.6.0
 - Upgraded to use FastCGIDaemon v0.6.0
