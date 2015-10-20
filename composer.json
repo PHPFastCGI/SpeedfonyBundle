@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.5.0",
         "symfony/symfony": "~2.7",
-        "phpfastcgi/fastcgi-daemon": "0.6.*"
+        "phpfastcgi/fastcgi-daemon": "^0.7"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
