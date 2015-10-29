@@ -1,6 +1,5 @@
 # Speedfony Bundle
 
-![GitHub License](https://img.shields.io/badge/license-GPLv2-blue.svg)
 [![Build Status](https://travis-ci.org/PHPFastCGI/SpeedfonyBundle.svg?branch=master)](https://travis-ci.org/PHPFastCGI/FastCGIDaemon)
 [![Coverage Status](https://coveralls.io/repos/PHPFastCGI/SpeedfonyBundle/badge.svg?branch=master)](https://coveralls.io/r/PHPFastCGI/SpeedfonyBundle?branch=master)
 
