@@ -3,8 +3,11 @@ services:
         class: PHPFastCGI\SpeedfonyBundle\Bridge\KernelWrapper
         arguments: ['@kernel']
 
+    php_fast_cgi_speedfony.driver_container:
+        class: PHPFastCGI\FastCGIDaemon\Driver\DriverContainer
+
     php_fast_cgi_speedfony.daemon_run_command:
         class: PHPFastCGI\FastCGIDaemon\Command\DaemonRunCommand
-        arguments: ['@php_fast_cgi_speedfony.kernel_wrapper', ~, 'speedfony:run']
+        arguments: ['@php_fast_cgi_speedfony.kernel_wrapper', '@php_fast_cgi_speedfony.driver_container', 'speedfony:run']
         tags:
             - { name: console.command }
