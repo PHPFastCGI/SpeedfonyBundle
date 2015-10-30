@@ -61,6 +61,9 @@ If you are using apache, you can configure the FastCGI module to launch and mana
 
 ## Updates
 
+### v0.7.1
+- Service configuration file fix
+
 ### v0.7.0
 - Upgraded to use FastCGIDaemon v0.7.0
 
