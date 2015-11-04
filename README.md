@@ -1,7 +1,10 @@
 # Speedfony Bundle
 
+[![Latest Stable Version](https://poser.pugx.org/phpfastcgi/speedfony-bundle/v/stable)](https://packagist.org/packages/phpfastcgi/speedfony-bundle)
 [![Build Status](https://travis-ci.org/PHPFastCGI/SpeedfonyBundle.svg?branch=master)](https://travis-ci.org/PHPFastCGI/FastCGIDaemon)
 [![Coverage Status](https://coveralls.io/repos/PHPFastCGI/SpeedfonyBundle/badge.svg?branch=master)](https://coveralls.io/r/PHPFastCGI/SpeedfonyBundle?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPFastCGI/SpeedfonyBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PHPFastCGI/SpeedfonyBundle/?branch=master)
+[![Total Downloads](https://poser.pugx.org/phpfastcgi/speedfony-bundle/downloads)](https://packagist.org/packages/phpfastcgi/speedfony-bundle)
 
 A symfony2 bundle which allows applications to reduce overheads by exposing symfony's Request-Response structure to a FastCGI daemon.
 
