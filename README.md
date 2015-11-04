@@ -16,7 +16,7 @@ Using this bundle, symfony2 applications can stay alive between HTTP requests wh
 
 ## Current Status
 
-This daemon is currently in early development stages and not considered stable. A stable release is expected by September 2015.
+This daemon is currently in early development stages and not considered stable.
 
 Contributions and suggestions are welcome.
 
