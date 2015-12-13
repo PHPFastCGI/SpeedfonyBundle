@@ -3,7 +3,7 @@
     "description": "A bundle to integrate a FastCGI daemon with the symfony2 framework",
     "keywords": ["speedfony", "bundle", "fastcgi", "server", "fast cgi", "daemon"],
     "type": "symfony-bundle",
-    "license": "GPL v2",
+    "license": "MIT",
     "authors": [
         {
             "name": "Andrew Carter",
