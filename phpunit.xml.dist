@@ -6,9 +6,9 @@
         </testsuite>
     </testsuites>
     <filter>
-        <blacklist>
-           <directory>vendor</directory>
-        </blacklist>
+        <whitelist>
+           <directory>Bridge</directory>
+        </whitelist>
     </filter>
 </phpunit>
 
