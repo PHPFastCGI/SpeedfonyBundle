@@ -12,7 +12,9 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "symfony/symfony": "~2.7",
+        "symfony/http-kernel": "~2.7|~3.0",
+        "symfony/dependency-injection": "~2.7|~3.0",
+        "symfony/yaml": "~2.7|~3.0",
         "phpfastcgi/fastcgi-daemon": "^0.7"
     },
     "require-dev": {
