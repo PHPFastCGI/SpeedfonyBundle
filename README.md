@@ -64,6 +64,12 @@ If you are using apache, you can configure the FastCGI module to launch and mana
 
 ## Updates
 
+### v0.8.1
+- Bugfix: Upgraded FastCGIDaemon to v0.8.0
+
+### v0.8.0
+- Symfony 3.0 component support
+
 ### v0.7.1
 - Service configuration file fix
 
