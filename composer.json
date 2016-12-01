@@ -15,7 +15,7 @@
         "symfony/http-kernel": "~2.7|~3.0",
         "symfony/dependency-injection": "~2.7|~3.0",
         "symfony/yaml": "~2.7|~3.0",
-        "phpfastcgi/fastcgi-daemon": "^0.8"
+        "phpfastcgi/fastcgi-daemon": "^0.10"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master"
