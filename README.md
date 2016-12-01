@@ -64,6 +64,9 @@ If you are using apache, you can configure the FastCGI module to launch and mana
 
 ## Updates
 
+### v0.9.0
+- Upgraded FastCGIDaemon to v0.10.0 (auto-shutdown and shutdown flag support)
+
 ### v0.8.1
 - Bugfix: Upgraded FastCGIDaemon to v0.8.0
 
