@@ -62,6 +62,8 @@ php app/console speedfony:run --port 5000 --env="prod"
 
 If you are using apache, you can configure the FastCGI module to launch and manage the daemon itself. For this to work you must omit the "--port" option from the command and the daemon will instead listen for incoming connections on FCGI_LISTENSOCK_FILENO (STDIN).
 
+For more information, please see the [server configuration documentation](https://github.com/PHPFastCGI/FastCGIDaemon#server-configuration).
+
 ## Updates
 
 ### v0.9.0
